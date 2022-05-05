@@ -1,0 +1,20 @@
+#! /bin/bash
+
+if [[ "${1}" == "db" ]]; then
+  echo " Starting postgres DB ....."
+
+  docker-compose -f ./postrges-database/docker-compose.db.yaml up -d
+  exit
+fi
+
+if [[ "${1}" == "app" ]]; then
+  echo " Run Application ....."
+
+  docker-compose -f ./application/docker-compose.yaml up -d
+  exit
+fi
+
+echo " The first parameter is required"
+echo " Examples:"
+echo "    - start db    /* starts postgres database"
+echo "    - start app    /* starts migrations & application"
